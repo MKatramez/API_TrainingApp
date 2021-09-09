@@ -31,7 +31,6 @@ public class EmployeeService {
         if(employeeOptional.isPresent()){
             throw new IllegalStateException("email taken");
         }
-
         employeeRepository.save(employee);
     }
 
