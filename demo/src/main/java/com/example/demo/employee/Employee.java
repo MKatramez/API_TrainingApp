@@ -16,7 +16,7 @@ public class Employee {
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
             generator = "employee_sequence"
-    )
+    )//sadsa
     private Long id;
     private String name;
     private String email;
