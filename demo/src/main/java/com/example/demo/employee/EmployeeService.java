@@ -22,6 +22,9 @@ public class EmployeeService {
     public List<Employee> getEmployees() {
         return employeeRepository.findAll();
     }
+    public Optional<Employee> getEmployeeById(Employee employee) {
+        return employeeRepository.findById(employee.getId());
+    }
 
     public void addNewEmployee(Employee employee) {
         Optional<Employee> employeeOptional = employeeRepository.findEmployeeByEmail(employee.getEmail());

@@ -3,8 +3,8 @@ package com.example.demo.employee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(path = "api/v1/employee")
@@ -20,6 +20,11 @@ public class EmployeeController {
     @GetMapping
     public List<Employee> getEmployees(){
         return employeeService.getEmployees();
+    }
+
+    @GetMapping(path = "{employeeId}")
+    public Optional<Employee> getEmployee(@PathVariable("employeeId") Employee employee) {
+        return employeeService.getEmployeeById(employee);
     }
 
     @PostMapping
