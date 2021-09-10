@@ -34,12 +34,12 @@ public class EmployeeService {
         employeeRepository.save(employee);
     }
 
-    public void deleteEmployee(Long employeeid) {
-        boolean exists = employeeRepository.existsById(employeeid);
+    public void deleteEmployee(Long employeeId) {
+        boolean exists = employeeRepository.existsById(employeeId);
         if (!exists){
-            throw new IllegalStateException("employee with id " + employeeid + " does not exists" );
+            throw new IllegalStateException("employee with id " + employeeId + " does not exists" );
         }
-        employeeRepository.deleteById(employeeid);
+        employeeRepository.deleteById(employeeId);
     }
 
     @Transactional
@@ -58,4 +58,5 @@ public class EmployeeService {
             employee.setEmail(email);
         }
     }
+
 }
