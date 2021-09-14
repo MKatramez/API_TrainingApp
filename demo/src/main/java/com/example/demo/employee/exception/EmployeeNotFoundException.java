@@ -1,8 +1,12 @@
 package com.example.demo.employee.exception;
 
-class EmployeeNotFoundException extends RuntimeException {
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
-    EmployeeNotFoundException(Long id) {
+@ResponseStatus(HttpStatus.BAD_REQUEST)
+public class EmployeeNotFoundException extends RuntimeException {
+
+    public EmployeeNotFoundException(Long id) {
         super("Could not find employee " + id);
     }
 }

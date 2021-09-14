@@ -1,5 +1,7 @@
 package com.example.demo.employee;
 
+
+import com.example.demo.employee.exception.EmployeeNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,7 +25,13 @@ public class EmployeeService {
         return employeeRepository.findAll();
     }
     public Optional<Employee> getEmployeeById(Employee employee) {
-        return employeeRepository.findById(employee.getId());
+        Long employeeId = employee.getId();
+        //Problem with if can't go inside this if to throw the Exception
+        Optional<Employee> employeeOptional = employeeRepository.findById(employeeId);
+        if (employeeOptional.isPresent() && employee == null){
+            throw new EmployeeNotFoundException(employeeId);
+        }
+        return employeeRepository.findById(employeeId);
     }
 
     public void addNewEmployee(Employee employee) {
