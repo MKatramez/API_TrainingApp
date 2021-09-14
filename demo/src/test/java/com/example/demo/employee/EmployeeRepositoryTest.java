@@ -1,9 +1,7 @@
 package com.example.demo.employee;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.mockito.Mock;
 
 import java.time.LocalDate;
 import java.time.Month;
@@ -14,7 +12,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 class EmployeeRepositoryTest {
 
-    @Autowired
+    @Mock
     private EmployeeRepository underTest;
 
     @Test
@@ -32,6 +30,7 @@ class EmployeeRepositoryTest {
         //then
         assertThat(expected).isEqualTo(employee);
     }
+
     @Test
     void itShouldCheckIfEmployeeNotFoundByEmail() {
         //given

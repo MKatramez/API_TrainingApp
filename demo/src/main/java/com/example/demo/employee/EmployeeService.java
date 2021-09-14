@@ -23,6 +23,7 @@ public class EmployeeService {
     public List<Employee> getEmployees() {
         return employeeRepository.findAll();
     }
+
     public Optional<Employee> getEmployeeById(Long employeeId) {
         //Problem with if can't go inside this if to throw the Exception
         Optional<Employee> employeeOptional = employeeRepository.findById(employeeId);
