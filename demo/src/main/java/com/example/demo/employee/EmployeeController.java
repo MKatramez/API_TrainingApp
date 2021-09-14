@@ -23,8 +23,8 @@ public class EmployeeController {
     }
 
     @GetMapping(path = "{employeeId}")
-    public Optional<Employee> getEmployee(@PathVariable("employeeId") Employee employee) {
-        return employeeService.getEmployeeById(employee);
+    public Optional<Employee> getEmployee(@PathVariable("employeeId") Long employeeId) {
+        return employeeService.getEmployeeById(employeeId);
     }
 
     @PostMapping

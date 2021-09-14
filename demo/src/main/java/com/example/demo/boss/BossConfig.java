@@ -1,7 +1,6 @@
-package com.example.demo.employee;
+package com.example.demo.boss;
 
-import com.example.demo.boss.Boss;
-import com.example.demo.boss.BossRepository;
+import com.example.demo.employee.Employee;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,10 +11,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Configuration
-public class EmployeeConfig {
+public class BossConfig {
 
-    @Bean
-    CommandLineRunner commandLineRunner (EmployeeRepository repository){
+    //@Bean
+    CommandLineRunner commandLineRunner(BossRepository repository) {
+
         return args -> {
             Employee employee1 = new Employee(
                     "Mohamad",
@@ -27,12 +27,18 @@ public class EmployeeConfig {
                     "alex@gmail.com",
                     LocalDate.of(1990, Month.JANUARY, 28)
             );
+            ArrayList<Employee> employees = new ArrayList<Employee>();
+            employees.add(employee1);
+            employees.add(employee2);
 
+            Boss b1 = new Boss(
+                    "Mike",
+                    "mike@gmail.com",
+                    employees
+            );
             repository.saveAll(
-                    List.of(employee1, employee2)
-
+                    List.of(b1)
             );
         };
     }
-
 }
