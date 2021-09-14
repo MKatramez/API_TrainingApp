@@ -24,14 +24,13 @@ public class EmployeeService {
     public List<Employee> getEmployees() {
         return employeeRepository.findAll();
     }
-    public Optional<Employee> getEmployeeById(Employee employee) {
-        Long employeeId = employee.getId();
+    public Optional<Employee> getEmployeeById(Long employeeId) {
         //Problem with if can't go inside this if to throw the Exception
         Optional<Employee> employeeOptional = employeeRepository.findById(employeeId);
-        if (employeeOptional.isPresent() && employee == null){
+        if (employeeOptional.isEmpty()){
             throw new EmployeeNotFoundException(employeeId);
         }
-        return employeeRepository.findById(employeeId);
+        return employeeOptional;
     }
 
     public void addNewEmployee(Employee employee) {
