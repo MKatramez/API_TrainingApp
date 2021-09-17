@@ -21,8 +21,10 @@ import static org.mockito.Mockito.*;
 @ExtendWith(MockitoExtension.class)
 class EmployeeServiceTest {
 
+    //We can use @Mock to create and inject mocked instances without having to call Mockito.mock manually.
     @Mock
     private EmployeeRepository employeeRepository;
+    //@InjectMocks uses this and delete @BeforeEach
     private EmployeeService underTest;
 
     @BeforeEach
@@ -54,7 +56,10 @@ class EmployeeServiceTest {
         underTest.getEmployeeById(employee.getId());
 
         //then
+
         verify(employeeRepository).findById(employee.getId());
+        //or like this using the BDDMockito
+        //then(employeeRepository).should().findById(employee.getId());
 
     }
 
@@ -156,7 +161,8 @@ class EmployeeServiceTest {
                 .isInstanceOf(IllegalStateException.class)
                 .hasMessageContaining("employee with id " + id + " does not exists");
 
-
+        //Matchers are: respond to a wider range of values or beforehand unknown values
+        //any() is argument matcher
         verify(employeeRepository, never()).deleteById(any());
     }
 
