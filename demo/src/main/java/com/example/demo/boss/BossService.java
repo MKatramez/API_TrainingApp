@@ -1,15 +1,19 @@
 package com.example.demo.boss;
 
-import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-@AllArgsConstructor
 public class BossService {
 
     private final BossRepository bossRepository;
+
+    @Autowired
+    public BossService(BossRepository bossRepository) {
+        this.bossRepository = bossRepository;
+    }
 
     public List<Boss> getAllBoss() {
         return bossRepository.findAll();
