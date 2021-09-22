@@ -26,7 +26,8 @@ public class EmployeeService {
 
     public Optional<Employee> getEmployeeById(Long employeeId) {
 
-        Optional<Employee> employeeOptional = employeeRepository.findById(employeeId);
+        Optional<Employee> employeeOptional = employeeRepository
+                .findById(employeeId);
         if (employeeOptional.isEmpty()){
             throw new EmployeeNotFoundException(employeeId);
         }
@@ -56,12 +57,15 @@ public class EmployeeService {
                 .orElseThrow(() -> new IllegalStateException
                         ("employee with id "+ employeeId + " does not exists"));
 
-        if (name != null && name.length() > 0 && !Objects.equals(employee.getName(), name)){
+        if (name != null && name.length() > 0
+                && !Objects.equals(employee.getName(), name)){
             employee.setName(name);
         }
 
-        if (email != null && email.length() > 0 && !Objects.equals(employee.getEmail(), email)){
-            Optional<Employee> employeeOptional = employeeRepository.findEmployeeByEmail(email);
+        if (email != null && email.length() > 0
+                && !Objects.equals(employee.getEmail(), email)){
+            Optional<Employee> employeeOptional =
+                    employeeRepository.findEmployeeByEmail(email);
             if (employeeOptional.isPresent()){
                 throw new IllegalStateException("email taken");
             }

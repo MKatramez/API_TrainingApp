@@ -18,4 +18,5 @@ public class BossService {
     public List<Boss> getAllBoss() {
         return bossRepository.findAll();
     }
+
 }

@@ -55,8 +55,10 @@ class EmployeeServiceTest {
         //when
         underTest.getEmployeeById(employee.getId());
 
-        //then
+        //Employee returnValue = underTest.get
+        //assertThat(returnValue).isEqualTo(employee);
 
+        //then
         verify(employeeRepository).findById(employee.getId());
         //or like this using the BDDMockito
         //then(employeeRepository).should().findById(employee.getId());
@@ -192,7 +194,11 @@ class EmployeeServiceTest {
                 .willReturn(Optional.of(employee));
         //when
         underTest.updateEmployee(id, "Mo", "mo@gmail.com");
-        assertThat(employee.getName()).isEqualTo(employee2.getName());
+        //assertThat(employee.getName()).isEqualTo(employee2.getName());
+        //assertThat(employee.getEmail()).isEqualTo(employee2.getEmail());
+        assertThat(employee)
+         .extracting(Employee::getName, Employee::getEmail)
+         .containsExactly("Mo", email2);
 
         //then
         verify(employeeRepository).findById(id);
@@ -201,6 +207,7 @@ class EmployeeServiceTest {
     @Test
     void willThrowWhenUpdateEmployeeEmailIsTaken() {
         //given
+        // employee before update
         Long id = 1L;
         String email = "mos@gmail.com";
         Employee employee = new Employee(
@@ -209,7 +216,7 @@ class EmployeeServiceTest {
                 email,
                 LocalDate.of(1998, Month.JANUARY, 28)
         );
-
+        // employee after update
         Long id2 = 1L;
         String email2 = "mo@gmail.com";
         Employee employee2 = new Employee(

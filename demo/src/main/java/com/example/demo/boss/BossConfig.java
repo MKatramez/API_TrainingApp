@@ -13,7 +13,7 @@ import java.util.List;
 @Configuration
 public class BossConfig {
 
-    //@Bean
+    @Bean("boss")
     CommandLineRunner commandLineRunner(BossRepository repository) {
 
         return args -> {
@@ -27,7 +27,7 @@ public class BossConfig {
                     "alex@gmail.com",
                     LocalDate.of(1990, Month.JANUARY, 28)
             );
-            ArrayList<Employee> employees = new ArrayList<Employee>();
+            ArrayList<Employee> employees = new ArrayList<>();
             employees.add(employee1);
             employees.add(employee2);
 
@@ -42,3 +42,28 @@ public class BossConfig {
         };
     }
 }
+//    @Autowired
+//    public BossConfig(BossRepository bossRepository) {
+//        Employee employee1 = new Employee(
+//                "Mohamad",
+//                "mohamad@gmail.com",
+//                LocalDate.of(1998, Month.JANUARY, 28)
+//        );
+//        Employee employee2 = new Employee(
+//                "Alex",
+//                "alex@gmail.com",
+//                LocalDate.of(1990, Month.JANUARY, 28)
+//        );
+//        ArrayList<Employee> employees = new ArrayList<Employee>();
+//        employees.add(employee1);
+//        employees.add(employee2);
+//
+//        Boss b1 = new Boss(
+//                "Mike",
+//                "mike@gmail.com",
+//                employees
+//        );
+//        bossRepository.saveAll(
+//                List.of(b1)
+//        );
+//    }
