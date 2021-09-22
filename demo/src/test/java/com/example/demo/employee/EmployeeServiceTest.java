@@ -182,14 +182,14 @@ class EmployeeServiceTest {
                 email,
                null
         );
-        Long id2 = 1L;
+        //Long id2 = 1L;
         String email2 = "mo@gmail.com";
-        Employee employee2 = new Employee(
-                id2,
-                "Mo",
-                email2,
-                null
-        );
+//        Employee employee2 = new Employee(
+//                id2,
+//                "Mo",
+//                email2,
+//                null
+//        );
         given(employeeRepository.findById(id))
                 .willReturn(Optional.of(employee));
         //when
